@@ -3,264 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renault On Demand - Seu Carro por Assinatura</title>
+    <title>Projeto de Carro por Assinatura</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --cor-primaria: #FFCC00; /* Amarelo */
-            --cor-fundo-escuro: #0d0d0d;
-            --cor-fundo-card-escuro: #1a1a1a;
-            --cor-texto-branco: #ffffff;
-            --cor-texto-cinza: rgb(255, 255, 255);
-            --cor-borda-escura: #333;
-
-            --cor-fundo-card-claro: #FFFFFF;
-            --cor-texto-preto: #212529;
-            --cor-texto-cinza-escuro: #3f3f3f;
-
-            --gradiente-laranja: linear-gradient(95.04deg, #ff8c36 -1.19%, #ff5a6a 98.55%);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--cor-fundo-card-claro); color: var(--cor-texto-preto); overflow-x: hidden; line-height: 1.6; }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
-        section { padding: 100px 0; background-color: var(--cor-fundo-card-claro); }
-        h2 { font-size: 2.8rem; font-weight: 700; text-align: center; margin-bottom: 80px; position: relative; padding-bottom: 20px; z-index: 2; }
-        h2::after { content: ''; display: block; width: 80px; height: 4px; background-color: var(--cor-primaria); margin: 10px auto 0; border-radius: 2px; }
-
-        /* --- HEADER (COM GRADIENTE) --- */
-        .top-header { position: fixed; top: 0; left: 0; width: 100%; padding: 25px 0; z-index: 1000; background: var(--gradiente-laranja); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .top-header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo-img {
-            width: auto;
-            display: block;
-            scale: 2.2;
-            max-height: 40px; /* Mantemos a altura original para o layout */
-
-        }
-        .nav-links a { color: var(--cor-texto-branco); text-decoration: none; margin-left: 30px; font-weight: 400; transition: color 0.3s ease; }
-        .nav-links a:hover { color: var(--cor-primaria); }
-
-        /* --- HERO SECTION --- */
-        .hero { display: flex; align-items: center; height: 100vh; min-height: 800px; padding-top: 80px; background-image: linear-gradient(to right, rgba(0,0,0,0.1) 0%, transparent 50%), url(imgs1/malu.png); background-size: cover; background-position: center center; }
-        .hero-container { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 60px; }
-        .hero-content { flex-basis: 50%; max-width: 550px; }
-        .hero-content h1 { font-size: 4.5rem; font-weight: 700; line-height: 1.15; margin-bottom: 25px; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); color: var(--cor-texto-branco); }
-        .hero-content p { font-size: 1.2rem; font-weight: 300; max-width: 480px; margin-bottom: 40px; color: var(--cor-texto-cinza); }
-        .btn-cta { display: inline-block; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
-        .btn-cta.primary { background: var(--gradiente-laranja); color: #ffffff; }
-        .btn-cta.primary:hover { background-color: #e6b800; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3); }
-        /* --- ESTILO PARA O BOTÃO DE DESTAQUE --- */
-        .btn-destaque {
-            display: inline-block;
-            padding: 20px 50px; /* Deixando o botão maior */
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 900; /* Deixando o texto mais forte */
-            font-size: 1.5rem; /* Aumentando o tamanho da fonte */
-            transition: all 0.3s ease;
-            background: #000000; /* Nova cor de fundo (amarelo) */
-            color: rgb(245, 245, 245); /* Nova cor do texto (preto) */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
-        .btn-destaque:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            filter: brightness(0.95); /* Leve escurecida ao passar o mouse */
-        }
-        
-        /* FORMULÁRIO COM GRADIENTE */
-        .hero-form { 
-            flex-basis: 35%; 
-            max-width: 420px; 
-            background: #ffffff; 
-            padding: 40px; 
-            border-radius: 12px; 
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); 
-        }
-        .hero-form h3 { font-size: 1.6rem; text-align: center; margin-bottom: 35px; color: rgb(0, 0, 0); /* Título formulario */ }
-        .form-group { margin-bottom: 20px; }
-        .form-group input, .form-group select { 
-            width: 100%; 
-            padding: 15px; 
-            background-color: rgba(0, 0, 0, 0.164); /* Fundo das opcoes formulario*/
-            border: 1px solid transparent; 
-            border-radius: 6px; 
-            color: var(--cor-texto-preto); /* Texto preto */
-            font-size: 1.15rem; 
-        }
-        .form-group ::placeholder { /* Cor do placeholder */
-            color: var(--cor-texto-cinza-escuro);
-        }
-        .form-group select {
-            color: var(--cor-texto-cinza-escuro); /* Cor padrão do select */
-        }
-        .form-group select:valid {
-            color: var(--cor-texto-preto); /* Cor quando uma opção é selecionada */
-        }
-
-        /* Adiciona um contorno laranja quando o menu de seleção é focado */
-        .form-group select:focus {
-        outline: 2px solid #ff8c36;
-        border-color: #ff8c36;
-        }
-        .form-button { 
-            width: 100%; 
-            padding: 16px; 
-            background: var(--gradiente-laranja) ; /* Botão Fundo */
-            color: rgb(255, 255, 255); /* Texto do botao */
-            border: none; 
-            border-radius: 6px; 
-            font-size: 1.1rem; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: opacity 0.3s ease;
-        }
-        .form-button:hover {
-            opacity: 0.9;
-        }
-
-        .privacy-text { font-size: 0.9rem; color: black; text-align: center; margin-top: 20px; }
-
-        /* SEÇÕES DE CONTEÚDO (FUNDO BRANCO, CARDS GRADIENTE) */
-        #frota h2, #vantagens h2, #como-funciona h2 { color: var(--cor-texto-preto); }
-        #frota h2::after, #vantagens h2::after, #como-funciona h2::after { background-color: var(--cor-primaria); }
-
-        .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .model-card { background: var(--gradiente-laranja); color: var(--cor-texto-branco); border-radius: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .model-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .model-card .model-img-container { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background-color: rgba(255,255,255,0.2); }
-        .model-card .model-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .model-card:hover .model-img-container img { transform: scale(1.05); }
-        .model-card-content { padding: 25px; }
-        .model-card-content h3 { color: var(--cor-texto-branco); font-size: 1.5rem; margin-bottom: 15px; font-weight: 600; }
-        .model-card-content .price { font-size: 1.1rem; color: rgba(255,255,255,0.8); }
-        .model-card-content .price span { font-size: 1.4rem; font-weight: 700; color: var(--cor-primaria); display: block; margin-top: 5px; }
-        
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .benefit-item { background: var(--gradiente-laranja); color: var(--cor-texto-branco); padding: 40px 30px; border-radius: 10px; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .benefit-item:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .benefit-item .icon { height: 60px; width: 60px; margin: 0 auto 25px auto; color: var(--cor-texto-branco); }
-        .benefit-item h3 { color: var(--cor-texto-branco); font-size: 1.4rem; margin-bottom: 10px; font-weight: 600; }
-        .benefit-item p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
-        
-        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
-        .step-item { background: var(--gradiente-laranja); color: var(--cor-texto-branco); padding: 40px; border-radius: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .step-item:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .step-item .step-number { font-size: 4.5rem; font-weight: 700; color: rgba(255, 255, 255, 0.3); line-height: 1; margin-bottom: 20px; }
-        .step-item h3 { color: var(--primaria); font-size: 1.7rem; margin: 15px 0; }
-        .step-item p { color: rgba(255,255,255,0.8); font-size: 1rem; }
-        
-        footer { background: var(--gradiente-laranja); text-align: center; padding: 50px 20px; }
-        footer p { color: var(--cor-texto-branco); font-size: 0.9rem; }
-
-        /* --- INÍCIO DA ADIÇÃO: ESTILOS PARA O MENU HAMBURGUER --- */
-        .menu-hamburger {
-            display: none; /* Escondido em telas grandes */
-            cursor: pointer;
-            z-index: 1001; /* Garante que fique sobre o conteúdo */
-        }
-        .menu-hamburger .line {
-            width: 30px;
-            height: 3px;
-            background-color: var(--cor-texto-branco);
-            margin: 6px 0;
-            transition: 0.4s;
-            border-radius: 3px;
-        }
-        /* --- FIM DA ADIÇÃO --- */
-        
-        @media (max-width: 992px) {
-            .hero-container { flex-direction: column; text-align: center; }
-            .hero { background-position: top center; height: auto; padding: 150px 20px 80px 20px; }
-            .hero-content { max-width: 100%; }
-            .hero-content h1 { font-size: 3rem; } h2 { font-size: 2.2rem; line-height: 1.15;}
-            .hero-content p { margin: 0 auto 40px auto; max-width: 100%;}
-            .hero-form { width: 100%; max-width: 500px; }
-            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-            .steps-grid { grid-template-columns: repeat(1, 1fr); }
-            .logo-img {scale: 1.5;}
-            
-            /* --- INÍCIO DA ADIÇÃO: ESTILOS DO MENU PARA TELAS MENORES --- */
-            .menu-hamburger {
-                display: block; /* Mostra o ícone em telas menores */
-            }
-            .nav-links {
-                display: flex;
-                position: fixed;
-                right: -100%; /* Começa fora da tela */
-                top: 0;
-                width: 70%;
-                height: 100vh;
-                background: var(--gradiente-laranja);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: right 0.5s ease-in-out;
-            }
-            .nav-links.active {
-                right: 0; /* Desliza para dentro da tela */
-            }
-            .nav-links a {
-                margin: 20px 0;
-                font-size: 1.5rem;
-            }
-
-            /* Animação do ícone para "X" */
-            .menu-hamburger.toggle .line1 {
-                transform: rotate(-45deg) translate(-7px, 7px);
-            }
-            .menu-hamburger.toggle .line2 {
-                opacity: 0;
-            }
-            .menu-hamburger.toggle .line3 {
-                transform: rotate(45deg) translate(-7px, -7px);
-            }
-            /* --- FIM DA ADIÇÃO --- */
-        }
-        @media (max-width: 768px) {
-            .benefits-grid { grid-template-columns: 1fr; }
-            .logo-img {scale: 1.4;}
-
-        }
-        @media (max-width: 1300px){
-            .logo-img {scale:1.8; padding-left: 1.4rem;}
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-
     <div class="top-header">
         <div class="container">
             <a href="#" class="logo">
-                <img src="imgs1/logosinalrenaultbranco.png" alt="Logo Sinal Renault" class="logo-img">
+                <img src="imgs/logosinalrenaultbranco.png" alt="Logo do Projeto" class="logo-img">
             </a>
             <nav class="nav-links">
-                <a href="#contato">Receber Contato</a>
-                <a href="#frota">Frota</a>
-                <a href="#vantagens">Vantagens</a>
+                <a href="#contato"><i class="fa-solid fa-envelope"></i> Receber Contato</a>
+                <a href="#frota"><i class="fa-solid fa-car"></i> Frota</a>
+                <a href="#vantagens"><i class="fa-solid fa-star"></i> Vantagens</a>
             </nav>
             <div class="menu-hamburger">
                 <div class="line line1"></div>
                 <div class="line line2"></div>
                 <div class="line line3"></div>
             </div>
-            </div>
+        </div>
     </div>
 
     <header class="hero" id="contato">
         <div class="container hero-container">
             <div class="hero-content">
-                <h1>Seu Renault 0km por Assinatura.</h1>
+                <h1>Seu Carro 0km por Assinatura.</h1>
                 <p>A liberdade de dirigir um carro novo todo ano, com seguro, IPVA e manutenção inclusos.</p>
                 <a href="#frota" class="btn-cta primary">Conheça a Frota</a>
             </div>
             <div class="hero-form">
-                <h3>Solicite sua proposta.<br>A partir de: R$ 2.750/mês</h3>
+                <h3>Solicite sua proposta.<br>A partir de: R$ 1.750/mês</h3>
                 <form id="contact-form">
                     <div class="form-group"><input type="text" id="nome" placeholder="Nome completo" required></div>
                     <div class="form-group"><input type="email" id="email" placeholder="Seu melhor e-mail" required></div>
@@ -281,6 +59,7 @@
                     <div class="feedback-messages" style="text-align: center; margin-top: 15px;">
                         <p class="loading" style="display: none; color: #333;">Enviando, aguarde...</p>
                         <p class="error-message" style="color: red; font-weight: bold;"></p>
+                        <p class="success-message" style="color: green; font-weight: bold; display: none;"></p>
                     </div>
                 </form>
             </div>
@@ -290,40 +69,40 @@
     <main>
         <section id="frota">
             <div class="container">
-                <h2>Escolha o Renault que combina com você</h2>
+                <h2>Escolha o veículo que combina com você</h2>
                 <div class="models-grid">
                     <div class="model-card">
-                        <div class="model-img-container"><img src="imgs1/kwidetech.webp" alt="Renault Kwid E-Tech"></div>
+                        <div class="model-img-container"><img src="imgs/kwidetech.webp" alt="Renault Kwid E-Tech"></div>
                         <div class="model-card-content">
                             <h3>Renault Kwid E-Tech</h3>
                         </div>
                     </div>
                     <div class="model-card">
-                        <div class="model-img-container"><img src="imgs1/duster.webp" alt="Renault Duster"></div>
+                        <div class="model-img-container"><img src="imgs/duster.webp" alt="Renault Duster"></div>
                         <div class="model-card-content">
                             <h3>Renault Duster</h3>
                         </div>
                     </div>
                     <div class="model-card">
-                        <div class="model-img-container"><img src="imgs1/oroch.webp" alt="Renault Oroch"></div>
+                        <div class="model-img-container"><img src="imgs/oroch.webp" alt="Renault Oroch"></div>
                         <div class="model-card-content">
                             <h3>Renault Oroch</h3>
                         </div>
                     </div>
-                     <div class="model-card">
-                        <div class="model-img-container"><img src="imgs1/kwid copiar.png" alt="Renault Kwid"></div>
+                    <div class="model-card">
+                        <div class="model-img-container"><img src="imgs/kwid copiar.png" alt="Renault Kwid"></div>
                         <div class="model-card-content">
                             <h3>Renault Kwid</h3>
                         </div>
                     </div>
                     <div class="model-card">
-                        <div class="model-img-container"><img src="imgs1/kardian.webp" alt="Renault Kardian"></div>
+                        <div class="model-img-container"><img src="imgs/kardian.webp" alt="Renault Kardian"></div>
                         <div class="model-card-content">
                             <h3>Renault Kardian</h3>
                         </div>
                     </div>
                     <div class="model-card">
-                        <div class="model-img-container"><img src="imgs1/master.webp" alt="Renault Master"></div>
+                        <div class="model-img-container"><img src="imgs/master.webp" alt="Renault Master"></div>
                         <div class="model-card-content">
                             <h3>Renault Master</h3>
                         </div>
@@ -337,28 +116,22 @@
                 <h2>Dirija sem preocupações. A gente cuida de tudo.</h2>
                 <div class="benefits-grid">
                     <div class="benefit-item">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <i class="fa-solid fa-file-lines icon"></i>
                         <h3>IPVA e Documentação</h3>
                         <p>Toda a burocracia e os impostos anuais do veículo ficam por nossa conta.</p>
                     </div>
                     <div class="benefit-item">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                        <i class="fa-solid fa-shield-halved icon"></i>
                         <h3>Seguro Completo</h3>
                         <p>Proteção total contra roubo, furto, acidentes e danos a terceiros.</p>
                     </div>
                     <div class="benefit-item">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3.0"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09c.7 0 1.34-.4 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06c.48.48 1.17.63 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .7.4 1.34 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06c-.48.48-.63 1.17-.33 1.82v.01c.17.6.81 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.7 0-1.34.4-1.51 1z"/>
-                        </svg>
-
+                        <i class="fa-solid fa-gears icon"></i>
                         <h3>Manutenção Preventiva</h3>
                         <p>Todas as revisões e trocas de peças por desgaste natural estão inclusas.</p>
                     </div>
                      <div class="benefit-item">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <i class="fa-solid fa-clock-rotate-left icon"></i>
                         <h3>Assistência 24h</h3>
                         <p>Suporte e reboque disponíveis a qualquer hora do dia, em todo o Brasil.</p>
                     </div>
@@ -370,194 +143,23 @@
              <div class="container">
                 <h2>Assinar é simples e rápido</h2>
                 <div class="steps-grid">
-                    <div class="step-item"><div class="step-number">01</div><h3 style="color: white;">Escolha o Carro</h3><p>Navegue pela nossa frota e selecione o modelo Renault que mais te agrada.</p></div>
+                    <div class="step-item"><div class="step-number">01</div><h3 style="color: white;">Escolha o Carro</h3><p>Navegue pela nossa frota e selecione o modelo que mais te agrada.</p></div>
                     <div class="step-item"><div class="step-number">02</div><h3 style="color: white;">Defina o Plano</h3><p>Personalize seu plano de quilometragem e o tempo de contrato conforme sua necessidade.</p></div>
                     <div class="step-item"><div class="step-number">03</div><h3 style="color: white;">Receba e Dirija</h3><p>Entregamos seu carro 0km na sua casa, com tudo pronto para você usar.</p></div>
-                    
                 </div>
                  <div style="text-align: center; margin-top: 60px;">
-                        <a href="#contato" class="btn-destaque">Receber Contato</a>
+                    <a href="#contato" class="btn-destaque">Receber Contato</a>
                 </div>
             </div>
-            
         </section>
-        
     </main>
 
     <footer>
         <div class="container">
-            <p style="font-size: 20px;">Uma empresa Grupo Sinal, desde 1980 · <a style="font-size: 20px; color: white; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='white';" href="https://www.gruposinal.com.br/outros-servicos?politicas=true" target="_blank">Privacidade</a></p>
+            <p style="font-size: 20px;">Projeto de Portfólio · 2025</p>
         </div>
     </footer>
-
-<script>
-    // --- LÓGICA DO MENU HAMBÚRGUER (mantida) ---
-    const hamburger = document.querySelector('.menu-hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links a');
-
-    const toggleMenu = () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('toggle');
-    };
-
-    hamburger.addEventListener('click', toggleMenu);
-
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    });
-
-    // --- INÍCIO DA LÓGICA DO FORMULÁRIO ---
-
-    // 1. Seleciona os elementos do formulário
-    const form = document.getElementById('contact-form');
-    const nomeInput = document.getElementById('nome');
-    const emailInput = document.getElementById('email');
-    const whatsappInput = document.getElementById('whatsapp');
-    const modeloInput = document.getElementById('modelo');
-    const submitButton = document.getElementById('submit-button');
-    const loadingMessage = form.querySelector('.loading');
-    const errorMessage = form.querySelector('.error-message');
-
-    // =====================================================================
-    // == CÓDIGO CORRIGIDO DA MÁSCARA DE TELEFONE ==
-    // =====================================================================
-    whatsappInput.addEventListener('input', (event) => {
-        const input = event.target;
-        // Remove tudo que não for número
-        let valor = input.value.replace(/\D/g, '');
-        // Limita a 11 dígitos
-        valor = valor.substring(0, 11);
-
-        // Reconstrói a máscara do zero
-        let valorFormatado = '';
-        if (valor.length > 0) {
-            valorFormatado = '(' + valor.substring(0, 2);
-        }
-        if (valor.length > 2) {
-            valorFormatado += ') ' + valor.substring(2, 7);
-        }
-        if (valor.length > 7) {
-            valorFormatado += '-' + valor.substring(7, 11);
-        }
-        
-        // Atualiza o valor no campo
-        input.value = valorFormatado;
-    });
-    // =====================================================================
-    // == FIM DO CÓDIGO DA MÁSCARA DE TELEFONE ==
-    // =====================================================================
-
-    // 2. Adiciona um "ouvinte" que aguarda o evento de "submit"
-    form.addEventListener('submit', async (event) => {
-        // Previne o comportamento padrão do navegador
-        event.preventDefault();
-
-        // Limpa mensagens de erro e mostra "Enviando..."
-        errorMessage.textContent = '';
-        loadingMessage.style.display = 'block';
-        submitButton.disabled = true;
-
-        // 3. Coleta os valores dos campos
-        const nome = nomeInput.value.trim();
-        const email = emailInput.value.trim().toLowerCase();
-        const whatsapp = whatsappInput.value.trim();
-        const modelo = modeloInput.value;
-        
-        // 4. Validação dos dados
-        if (!nome || nome.split(' ').length < 2) {
-            errorMessage.textContent = 'Por favor, digite seu nome completo.';
-            loadingMessage.style.display = 'none';
-            submitButton.disabled = false;
-            return;
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            errorMessage.textContent = 'Por favor, digite um e-mail válido.';
-            loadingMessage.style.display = 'none';
-            submitButton.disabled = false;
-            return;
-        }
-        if (whatsapp.replace(/\D/g, '').length < 10) {
-            errorMessage.textContent = 'Por favor, digite um WhatsApp com DDD válido.';
-            loadingMessage.style.display = 'none';
-            submitButton.disabled = false;
-            return;
-        }
-        if (!modelo) {
-            errorMessage.textContent = 'Por favor, selecione um modelo de interesse.';
-            loadingMessage.style.display = 'none';
-            submitButton.disabled = false;
-            return;
-        }
-
-        
-        // 5. Prepara os dados para enviar à API
-
-         //Array de parametros 'chave=valor'
-        var params = window.location.search.substring(1).split('&');
-
-        //Criar objeto que vai conter os parametros
-        var paramArray = {};
-
-        //Passar por todos os parametros
-        for(var i=0; i<params.length; i++) {
-            //Dividir os parametros chave e valor
-            var param = params[i].split('=');
-
-            //Adicionar ao objeto criado antes
-            paramArray[param[0]] = param[1];
-        }
-        
-        const digitosTelefone = whatsapp.replace(/[^0-9]/g, '');
-        const ddd = digitosTelefone.substring(0, 2);
-        const numero = digitosTelefone.substring(2);
-
-        const payload = {
-            customer: { name: nome, emails: [email], phones: [{ ddd: ddd, numero: numero }] },
-            event: {
-                companyId: '57', 
-                eventGroup: 'OPORTUNIDADE',
-                eventType: 'CAMPANHA ROD',
-                source: 'INTERNET',
-                media: 'SITE CONCESSIONARIA',
-                comment: "Origem: " + paramArray['utm_source'] + " / " + paramArray['utm_medium'] + " / " + paramArray['utm_content'] + ` - Renault Por Assinatura - ${modelo}` 
-            }
-        };
-
-        // 6. Configura a autenticação
-        const login = 'API_SITESINAL';
-        const senha = 'Integrac@o2022';
-        const url = 'https://sinal.syonet.com/api/lead';
-
-        // 7. Tenta fazer a chamada para a API
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(login + ':' + senha) },
-                body: JSON.stringify(payload)
-            });
-
-            // 8. Trata a resposta
-            if (response.ok) {
-                alert('Proposta solicitada com sucesso! Em breve um de nossos consultores entrará em contato.');
-                form.reset(); 
-            } else {
-                alert(`Ocorreu um erro ao enviar sua solicitação (Código: ${response.status}). Por favor, tente novamente.`);
-            }
-
-        } catch (error) {
-            alert('Não foi possível conectar ao servidor. Verifique sua conexão com a internet e tente novamente.');
-            console.error('Erro de rede:', error);
-        } finally {
-            loadingMessage.style.display = 'none';
-            submitButton.disabled = false;
-        }
-    });
-</script>
+    <script src="script.js"></script>
 
 </body>
 </html>
